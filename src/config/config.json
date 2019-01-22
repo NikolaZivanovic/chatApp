@@ -1,0 +1,6 @@
+{
+    "IS_CONSOLE_VISIBLE": true,
+
+    "AJAX_REQUEST_DEFAULT_TIMEOUT": 30000,
+    "API_BUNQ_BASE_URL": "http://assignment.bunq.com"
+}

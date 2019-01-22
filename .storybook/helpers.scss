@@ -1,0 +1,30 @@
+:global {
+    .wrapper {
+        margin: auto;
+        border: 1px dotted #bbb;
+    }
+
+    .wrapper--small {
+        max-width: 20em;
+    }
+
+    .wrapper--medium {
+        max-width: 30em;
+    }
+
+    .wrapper--big {
+        max-width: 60em;
+    }
+
+    .wrapper--biggest {
+        max-width: 100em;
+    }
+
+    .wrapper--padding {
+        padding: 3em;
+    }
+
+    .loaderCentered {
+        margin: 0 auto;
+    }
+}

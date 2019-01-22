@@ -1,0 +1,3 @@
+export const LOGOUT_IN_PROGRESS = 'LOGOUT_IN_PROGRESS';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+

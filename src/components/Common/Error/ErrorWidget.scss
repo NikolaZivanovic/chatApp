@@ -1,0 +1,23 @@
+.Container {
+    position: relative;
+    border-radius: 3px;
+    background-color: $colorFailRed;
+    color: #fff;
+    margin-top: 0.5em;
+    padding: 1em;
+}
+
+.TopArrow {
+    position: absolute;
+    z-index: 60;
+    top: -13px;
+    left: 50%;
+    margin-left: 20%;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid $colorFailRed;
+    border-top: 15px solid transparent;
+}
+
+
