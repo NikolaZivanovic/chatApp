@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import StoreProvider from '../StoreProvider';
-import NewChatWidget from '../../src/components/App/NewChat/NewChatWidget/NewChatWidget';
+import NewChatWidget from '../../src/components/App/MaterialDrawer/NewChat/NewChatWidget/NewChatWidget';
 import {MemoryRouter as Router} from 'react-router-dom';
 
 const user = {id:'1', name:'Wessel'};

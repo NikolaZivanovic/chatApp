@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import _isEmpty from 'lodash/isEmpty';
 
+import MaterialLoader from '../../Common/MaterialLoader/MaterialLoader';
 import {getMessages} from './Chat.actions';
 import {sendMessage} from './SendMessageRequest/SendMessageRequest.actions';
 import {setLastSeen} from './SetLastSeen/SetLastSeen.actions';
@@ -11,6 +13,7 @@ import {styles} from './Chat.styles';
 import MessageInputWidget from './MessageInputWidget/MessageInputWidget';
 import MessageChipWidget from './MessageChipWidget/MessageChipWidget';
 import {withStyles} from '@material-ui/core';
+import ErrorWidget from '../../Common/Error/ErrorWidget';
 
 
 class Chat extends React.Component {
@@ -36,7 +39,7 @@ class Chat extends React.Component {
     getMessages = () => {
         this.props.getMessages(this.props.selectedConversation, this.state.offset);
         this.setState(prevState => ({
-            offset: prevState.offset + 10
+            offset: prevState.offset + 20
         }))
     };
 
@@ -76,6 +79,13 @@ class Chat extends React.Component {
             .catch();
     };
 
+    renderMessageChips = () => {
+        return [...this.props.MessagesReducer.data].reverse().map(message => {
+            return <MessageChipWidget key={message.id} user={this.props.UserReducer} message={message}
+                                      matchUserIdToName={this.matchUserIdToName}/>
+        })
+    };
+
     render() {
 
         const {classes} = this.props;
@@ -83,14 +93,30 @@ class Chat extends React.Component {
         return (
             <div className={classes.container}>
                 <div className={classes.messageContainer}>
-                    <div className={classes.loadMore} onClick={() => this.getMessages()}>Load More</div>
+
                     {
                         this.props.MessagesReducer.data &&
-                        [...this.props.MessagesReducer.data].reverse().map(message => {
-                            return <MessageChipWidget key={message.id} user={this.props.UserReducer} message={message}
-                                                      matchUserIdToName={this.matchUserIdToName}/>
-                        })
+                        !_isEmpty(this.props.MessagesReducer.data) &&
+                        <Fragment>
+                            <div className={classes.loadMore} onClick={() => this.getMessages()}>Load More</div>
+                            {this.renderMessageChips()}
+                        </Fragment>
+
+                        ||
+
+                        <div className={classes.loadMore}>No Messages</div>
                     }
+
+                    {
+                        this.props.MessagesReducer.isLoading &&
+                        <MaterialLoader/>
+                    }
+
+                    {
+                        this.props.MessagesReducer.isError &&
+                        <ErrorWidget isWithoutArrow={true} errorMessage={'Something went wrong! Please try again'}/>
+                    }
+
                     <span ref={el => {
                         this.messagesEnd = el;
                     }}/>

@@ -11,7 +11,7 @@ import ROUTES from '../../../config/apiRoutes';
 
 const getMessagesOnApi = (conversationId, offset) => {
     return ajax.get(
-        ROUTES.CONVERSATION + conversationId + '/message/limited?limit=10&offset=' + offset
+        ROUTES.CONVERSATION + conversationId + '/message/limited?limit=20&offset=' + offset
     );
 };
 

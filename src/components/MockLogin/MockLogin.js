@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import ErrorWidget from '../Common/Error/ErrorWidget';
 import MockLoginForm from './MockLoginForm/MockLoginForm'
-import {login} from '../User/GetSingleUser/GetSingleUser.actions';
+import {login} from './User/GetSingleUser/GetSingleUser.actions';
 import {styles} from './MockLogin.styles';
 
 import {withStyles} from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import ErrorWidget from '../Common/Error/ErrorWidget';
 
 
 class MockLogin extends Component {
@@ -31,7 +30,7 @@ class MockLogin extends Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes, UserReducer} = this.props;
 
         return (
             <div className={classes.container}>
@@ -40,21 +39,17 @@ class MockLogin extends Component {
                     inputChangeHandler={this.inputChangeHandler}
                     submitHandler={this.submitHandler}
                     classes={classes}
+                    userReducerLoading={UserReducer.isLoading}
                 />
 
                 {
-                    this.props.UserReducer.isError ||
-                    this.props.UserReducer.data &&
-                    this.props.UserReducer.data.user === false &&
+                    UserReducer.isError ||
+                    UserReducer.data &&
+                    UserReducer.data.user === false &&
                     <ErrorWidget
                         errorMessage={'Something went wrong! Please try again'}
                         isWithoutArrow={true}
                     />
-                }
-
-                {
-                    this.props.UserReducer.isLoading &&
-                    <CircularProgress className={classes.progress}/>
                 }
 
             </div>

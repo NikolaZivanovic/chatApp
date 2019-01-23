@@ -59,7 +59,6 @@ class NewChat extends React.Component {
                         </ListItem>
                         <Divider/>
                     </Fragment>
-
                 }
 
                 {

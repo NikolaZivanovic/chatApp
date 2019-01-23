@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import momentTz from 'moment-timezone';
 import classNames from 'classnames';
+import _isEmpty from 'lodash/isEmpty';
 
 import Chat from './Chat/Chat';
-import {getAllUsers} from '../User/GetAllUsers/GetAllUsers.actions';
-import {getAllConversations} from './Conversations/Conversations.actions';
+import {getAllUsers} from '../MockLogin/User/GetAllUsers/GetAllUsers.actions';
+import {getAllConversations} from './MaterialDrawer/Conversations/Conversations.actions';
 import {resetMessagesReducer} from './Chat/Chat.actions';
-import {createChat} from './NewChat/NewChat.actions';
+import {createChat} from './MaterialDrawer/NewChat/NewChat.actions';
 import {getNewMessages} from './Chat/NewMessagesRequest/NewMessages.actions';
-import {getLastSeen} from './Conversations/GetLastSeen/GetLastSeen.actions';
+import {getLastSeen} from './MaterialDrawer/Conversations/GetLastSeen/GetLastSeen.actions';
 import MaterialDrawer from './MaterialDrawer/MaterialDrawer';
 import {styles} from './App.styles';
 
@@ -171,7 +171,7 @@ class App extends React.Component {
     };
 
     reloadMessagesHandler = () => {
-        if (this.state.selectedConversation !== null) {
+        if (this.state.selectedConversation !== null && !_isEmpty(this.props.MessagesReducer.data)) {
             let newRotation = this.state.rotation - 360;
             let lastMessage = this.props.MessagesReducer.data[0].id;
             this.props.getNewMessages(this.state.selectedConversation, lastMessage);
@@ -190,13 +190,10 @@ class App extends React.Component {
         const rotation = this.state.rotation;
         const rot = {transform: `rotate(${rotation}deg)`};
 
-        let lastSeen = momentTz.tz(
+        let lastSeen = moment.utc(
             this.props.LastSeenReducer.data &&
             this.props.LastSeenReducer.data.lastseen !== null &&
-            this.props.LastSeenReducer.data.lastseen, 'GMT').format();
-
-
-
+            this.props.LastSeenReducer.data.lastseen).local().format();
 
         return (
             <div className={classes.root}>
@@ -239,7 +236,6 @@ class App extends React.Component {
                     </AppBar>
 
                     {
-
                         <MaterialDrawer
                             usersReducer={this.props.UserReducer}
                             handleNewChatSelection={this.handleNewChatSelection}

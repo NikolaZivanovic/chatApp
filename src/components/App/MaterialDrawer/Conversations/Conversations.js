@@ -4,8 +4,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import ConversationWidget from './ConversationWidget/ConversationWidget';
-import MaterialLoader from '../../Common/MaterialLoader/MaterialLoader';
-import ErrorWidget from '../../Common/Error/ErrorWidget';
 
 
 class Conversations extends React.Component {
@@ -56,16 +54,6 @@ class Conversations extends React.Component {
             <Fragment>
                 {
                     this.mapConversations(this.props.ConversationsReducer.data)
-                }
-
-                {
-                    this.props.ConversationsReducer.isLoading &&
-                        <MaterialLoader/>
-                }
-
-                {
-                    this.props.ConversationsReducer.isError &&
-                        <ErrorWidget errorMessage={'Something went wrong! Please try again'} isWithoutArrow={true}/>
                 }
             </Fragment>
         );

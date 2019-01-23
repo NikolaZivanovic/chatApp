@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 import {styles} from './MaterialLoader.styles';
 
-import {withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 
-const MaterialLoader = () => {
-
-    const {classes} = this.props;
+const MaterialLoader = ({classes}) => {
 
     return (
         <CircularProgress className={classes.progress}/>
     );
+
 };
 
 MaterialLoader.propTypes = {

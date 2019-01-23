@@ -1,11 +1,11 @@
-import {ajaxBunq as ajax} from '../../../../util/ajax';
+import {ajaxBunq as ajax} from '../../../../../util/ajax';
 import {
     GET_LAST_SEEN_IN_PROGRESS,
     GET_LAST_SEEN_SUCCESS,
     GET_LAST_SEEN_ERROR,
 } from './GetLastSeen.actionTypes';
-import {parseResponseError} from '../../../../util/responseHelper';
-import ROUTES from '../../../../config/apiRoutes';
+import {parseResponseError} from '../../../../../util/responseHelper';
+import ROUTES from '../../../../../config/apiRoutes';
 
 
 const getLastSeenOnApi = (conversationId, userId) => {

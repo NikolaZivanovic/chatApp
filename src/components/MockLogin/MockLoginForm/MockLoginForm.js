@@ -2,9 +2,10 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import MaterialLoader from '../../Common/MaterialLoader/MaterialLoader';
 
 
-const MockLoginForm = ({inputChangeHandler, submitHandler, classes}) => {
+const MockLoginForm = ({inputChangeHandler, submitHandler, classes, userReducerLoading}) => {
 
     return (
         <Fragment>
@@ -19,9 +20,18 @@ const MockLoginForm = ({inputChangeHandler, submitHandler, classes}) => {
                     margin="normal"
                     onChange={event => inputChangeHandler(event)}
                 />
-                <Button className={classes.button} color="primary" variant="contained" type='submit'>
-                    LOG IN
-                </Button>
+
+                {
+                    userReducerLoading &&
+                        <MaterialLoader/>
+
+                        ||
+
+                        <Button className={classes.button} color="primary" variant="contained" type='submit'>
+                            LOG IN
+                        </Button>
+                }
+
             </form>
         </Fragment>
     );
@@ -31,6 +41,7 @@ MockLoginForm.propTypes = {
     classes: PropTypes.object.isRequired,
     inputChangeHandler: PropTypes.func.isRequired,
     submitHandler: PropTypes.func.isRequired,
+    userReducerLoading: PropTypes.bool.isRequired
 };
 
 export default MockLoginForm;

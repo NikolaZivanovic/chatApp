@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import StoreProvider from '../StoreProvider';
-import ConversationWidget from '../../src/components/App/Conversations/ConversationWidget/ConversationWidget';
+import ConversationWidget from '../../src/components/App/MaterialDrawer/Conversations/ConversationWidget/ConversationWidget';
 import {MemoryRouter as Router} from 'react-router-dom';
 
 const conversation = {

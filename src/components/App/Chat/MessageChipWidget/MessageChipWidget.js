@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import momentTz from 'moment-timezone';
 
 import {styles} from './MessageChipWidget.styles';
 
@@ -13,8 +12,9 @@ import Typography from '@material-ui/core/Typography';
 
 const MessageChipWidget = props => {
 
+
     const {classes, message, user, matchUserIdToName} = props;
-    const time = momentTz.tz(message.timestamp, 'GMT').format();
+    const time = moment.utc(message.timestamp).local().format();
     return (
         <div className={message.senderId === user.id && classes.containerRight || classes.containerLeft}>
             <Card>
@@ -32,7 +32,6 @@ const MessageChipWidget = props => {
                     <Typography className={classes.date}>
                         {
                             moment(time).fromNow()
-
                         }
                     </Typography>
                 </CardContent>

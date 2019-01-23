@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import ErrorWidget from '../../Common/Error/ErrorWidget';
 import MaterialLoader from '../../Common/MaterialLoader/MaterialLoader';
-import NewChat from '../NewChat/NewChat';
-import Conversations from '../Conversations/Conversations';
+import NewChat from './NewChat/NewChat';
+import Conversations from './Conversations/Conversations';
 import Logout from '../../Common/Logout/Logout';
 
 import Drawer from '@material-ui/core/Drawer/Drawer';
@@ -73,6 +73,18 @@ const MaterialDrawer = ({
             }
 
             {
+                !drawerContent &&
+                conversationsReducer.isLoading &&
+                <MaterialLoader/>
+            }
+
+            {
+                !drawerContent &&
+                conversationsReducer.isError &&
+                <ErrorWidget errorMessage={'Something went wrong! Please try again'} isWithoutArrow={true}/>
+            }
+
+            {
                 drawerContent &&
                 checkBoxes !== null &&
                 conversationsReducer.data &&
@@ -100,7 +112,7 @@ const MaterialDrawer = ({
                 drawerContent &&
                 checkBoxes !== null &&
                 newChatReducer.isError &&
-                <ErrorWidget/>
+                <ErrorWidget errorMessage={'Something went wrong! Please try again'} isWithoutArrow={true}/>
             }
 
         </Drawer>
@@ -118,13 +130,13 @@ MaterialDrawer.propTypes = {
     handleConversationSelect: PropTypes.func.isRequired,
     selectedConversation: PropTypes.string,
     checkBoxes: PropTypes.object,
-    handleNewChatSelection : PropTypes.func.isRequired,
+    handleNewChatSelection: PropTypes.func.isRequired,
     isCheckBoxSelected: PropTypes.func.isRequired,
     handleChatNameInput: PropTypes.func.isRequired,
     handleNewChatSubmit: PropTypes.func.isRequired,
     newChatReducer: PropTypes.object.isRequired,
-    drawerOpen : PropTypes.bool.isRequired,
-    theme:  PropTypes.object.isRequired,
+    drawerOpen: PropTypes.bool.isRequired,
+    theme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(MaterialDrawer);

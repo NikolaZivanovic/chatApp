@@ -1,11 +1,11 @@
-import {ajaxBunq as ajax} from '../../../util/ajax';
+import {ajaxBunq as ajax} from '../../../../util/ajax';
 import {
     GET_ALL_USERS_IN_PROGRESS,
     GET_ALL_USERS_SUCCESS,
     GET_ALL_USERS_ERROR,
 } from './GetAllUsers.actionTypes';
-import {parseResponseError} from '../../../util/responseHelper';
-import ROUTES from '../../../config/apiRoutes';
+import {parseResponseError} from '../../../../util/responseHelper';
+import ROUTES from '../../../../config/apiRoutes';
 
 
 const getAllUsersOnApi = () => {

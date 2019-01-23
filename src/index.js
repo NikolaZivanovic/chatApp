@@ -6,7 +6,7 @@ import {ConnectedRouter} from "react-router-redux";
 import { initializeEnv } from './config/environment.config';
 import Root from "./components/Root";
 import Provider from "react-redux/es/components/Provider";
-import { initPersistentLogin } from './components/User/GetSingleUser/User.persistentHelper';
+import { initPersistentLogin } from './components/MockLogin/User/GetSingleUser/User.persistentHelper';
 import './styles/styles.scss';
 import ajax from './util/ajax';
 

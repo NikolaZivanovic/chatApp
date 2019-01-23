@@ -1,11 +1,11 @@
-import {ajaxBunq as ajax} from '../../../util/ajax';
+import {ajaxBunq as ajax} from '../../../../util/ajax';
 import {
     REQUEST_NEW_CHAT_IN_PROGRESS,
     REQUEST_NEW_CHAT_SUCCESS,
     REQUEST_NEW_CHAT_ERROR,
 } from './NewChat.actionTypes';
-import {parseResponseError} from '../../../util/responseHelper';
-import ROUTES from '../../../config/apiRoutes';
+import {parseResponseError} from '../../../../util/responseHelper';
+import ROUTES from '../../../../config/apiRoutes';
 
 
 const createChatOnApi = (users, name) => {

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {Route, Switch} from "react-router-dom";
+import React, {Component} from 'react';
+import {Route, Switch} from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import Loader from './Common/Loader/Loader';
@@ -24,10 +24,10 @@ class NonAuthRoot extends Component {
             <React.Fragment>
 
                 <Switch>
-                    <Route path={APP_ROUTES.LOGIN} component={Login} />
-                    <Route component={RedirectLogin} />
+                    <Route path={APP_ROUTES.LOGIN} component={Login}/>
+                    <Route component={RedirectLogin}/>
                 </Switch>
-              
+
             </React.Fragment>
         );
     }
