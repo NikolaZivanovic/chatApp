@@ -72,7 +72,7 @@ const addMessagesToState = (state, newMessages) => {
     } else {
         newState.data.unshift(...newMessages);
     }
-
+    newState.isLoading = false;
     return newState;
 };
 
