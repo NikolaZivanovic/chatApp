@@ -6,6 +6,7 @@ import MaterialLoader from '../../Common/MaterialLoader/MaterialLoader';
 import NewChat from './NewChat/NewChat';
 import Conversations from './Conversations/Conversations';
 import Logout from '../../Common/Logout/Logout';
+import {styles} from '../App.styles';
 
 import Drawer from '@material-ui/core/Drawer/Drawer';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,7 +16,7 @@ import List from '@material-ui/core/List/List';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {withStyles} from '@material-ui/core';
-import {styles} from '../App.styles';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 const MaterialDrawer = ({
@@ -48,15 +49,21 @@ const MaterialDrawer = ({
         >
 
             <div className={classes.drawerHeader}>
-                <IconButton>
-                    <Logout/>
-                </IconButton>
-                <IconButton onClick={handleNewChat}>
-                    <ChatIcon/>
-                </IconButton>
-                <IconButton onClick={handleDrawerToggle}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-                </IconButton>
+                <Tooltip title="Logout" placement="bottom">
+                    <IconButton>
+                        <Logout/>
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="New Chat" placement="bottom">
+                    <IconButton onClick={handleNewChat}>
+                        <ChatIcon/>
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Back" placement="bottom">
+                    <IconButton onClick={handleDrawerToggle}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                    </IconButton>
+                </Tooltip>
             </div>
             <Divider/>
 

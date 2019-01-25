@@ -23,6 +23,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Replay from '@material-ui/icons/Replay'
+import Tooltip from '@material-ui/core/Tooltip/Tooltip';
 
 
 class App extends React.Component {
@@ -227,8 +228,10 @@ class App extends React.Component {
                                     <span>Last seen: {moment(lastSeen).fromNow()}</span>
                                 }
 
-                                <Replay style={rot} className={rotateClass}
-                                        onClick={() => this.reloadMessagesHandler()}/>
+                                <Tooltip title="Load New Messages" placement="bottom">
+                                    <Replay style={rot} className={rotateClass}
+                                            onClick={() => this.reloadMessagesHandler()}/>
+                                </Tooltip>
 
                             </div>
 
